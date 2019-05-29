@@ -12,7 +12,7 @@ import java.util.Random;
  *
  * Created by XiaoFeng on 2018/9/5.
  */
-public class RouterFragmentV4 extends Fragment implements AbstractFragment{
+public class RouterFragmentV4 extends Fragment implements AbstractFragmentRouter {
 
     private SparseArray<ActivityLauncher.Callback> mCallbacks = new SparseArray<>();
     private Random mCodeGenerator = new Random();

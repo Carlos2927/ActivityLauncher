@@ -22,6 +22,7 @@ public class ActivityLauncher {
     private RouterFragmentX mRouterFragmentX;
     /** 标准SDK下的Fragment */
     private RouterFragment mRouterFragment;
+    private AbstractFragmentRouter mFragmentRouter;
 
     public static ActivityLauncher init(Fragment fragment) {
         return init(fragment.getActivity());
@@ -48,16 +49,19 @@ public class ActivityLauncher {
     private ActivityLauncher(FragmentActivity activity) {
         mContext = activity;
         mRouterFragmentV4 = getRouterFragmentV4(activity);
+        mFragmentRouter = mRouterFragmentV4;
     }
 
     private ActivityLauncher(androidx.fragment.app.FragmentActivity activity) {
         mContext = activity;
         mRouterFragmentX = getRouterFragmentX(activity);
+        mFragmentRouter = mRouterFragmentX;
     }
 
     private ActivityLauncher(Activity activity) {
         mContext = activity;
         mRouterFragment = getRouterFragment(activity);
+        mFragmentRouter = mRouterFragment;
     }
 
     private RouterFragmentX getRouterFragmentX(androidx.fragment.app.FragmentActivity activity) {
@@ -120,12 +124,8 @@ public class ActivityLauncher {
     }
 
     public void startActivityForResult(Intent intent, Callback callback) {
-        if (mRouterFragmentV4 != null) {
-            mRouterFragmentV4.startActivityForResult(intent, callback);
-        } else if (mRouterFragmentX != null) {
-            mRouterFragmentX.startActivityForResult(intent, callback);
-        } else if (mRouterFragment != null) {
-            mRouterFragment.startActivityForResult(intent, callback);
+        if (mFragmentRouter != null) {
+            mFragmentRouter.startActivityForResult(intent, callback);
         } else {
             throw new RuntimeException("please do init first!");
         }

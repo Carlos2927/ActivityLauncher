@@ -2,7 +2,6 @@ package com.zdf.activitylauncher;
 
 import android.content.Intent;
 
-public interface AbstractFragment {
+public interface AbstractFragmentRouter {
     void startActivityForResult(Intent intent, ActivityLauncher.Callback callback);
-    void onActivityResult(int requestCode, int resultCode, Intent data);
 }
