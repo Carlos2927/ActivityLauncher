@@ -11,7 +11,7 @@ import java.util.Random;
 /**
  * 把OnActivityResult方式转换为Callback方式的空Fragment（androidX兼容包）
  *
- * Created by XiaoFeng on 2018/9/5.
+ * Created by Carlos2927 on 2019/5/29.
  */
 public class RouterFragmentX extends Fragment implements AbstractFragmentRouter {
 
