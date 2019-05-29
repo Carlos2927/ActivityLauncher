@@ -12,7 +12,7 @@ import java.util.Random;
  *
  * Created by XiaoFeng on 2018/9/5.
  */
-public class RouterFragmentV4 extends Fragment {
+public class RouterFragmentV4 extends Fragment implements AbstractFragment{
 
     private SparseArray<ActivityLauncher.Callback> mCallbacks = new SparseArray<>();
     private Random mCodeGenerator = new Random();
@@ -31,6 +31,7 @@ public class RouterFragmentV4 extends Fragment {
         setRetainInstance(true);
     }
 
+    @Override
     public void startActivityForResult(Intent intent, ActivityLauncher.Callback callback) {
         int requestCode = makeRequestCode();
         mCallbacks.put(requestCode, callback);

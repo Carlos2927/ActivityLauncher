@@ -1,28 +1,28 @@
 package com.zdf.activitylauncher;
 
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import androidx.fragment.app.Fragment;
 import android.util.SparseArray;
 
 import java.util.Random;
 
 /**
- * 把OnActivityResult方式转换为Callback方式的空Fragment（标准SDK）
+ * 把OnActivityResult方式转换为Callback方式的空Fragment（V4兼容包）
  *
  * Created by XiaoFeng on 2018/9/5.
  */
-public class RouterFragment extends Fragment implements AbstractFragment{
+public class RouterFragmentX extends Fragment implements AbstractFragment{
 
     private SparseArray<ActivityLauncher.Callback> mCallbacks = new SparseArray<>();
     private Random mCodeGenerator = new Random();
 
-    public RouterFragment() {
+    public RouterFragmentX() {
         // Required empty public constructor
     }
 
-    public static RouterFragment newInstance() {
-        return new RouterFragment();
+    public static RouterFragmentX newInstance() {
+        return new RouterFragmentX();
     }
 
     @Override

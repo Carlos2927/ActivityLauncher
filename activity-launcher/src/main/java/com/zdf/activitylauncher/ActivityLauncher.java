@@ -18,14 +18,26 @@ public class ActivityLauncher {
     private Context mContext;
     /** V4兼容包下的Fragment */
     private RouterFragmentV4 mRouterFragmentV4;
+    /** androidX兼容包下的Fragment */
+    private RouterFragmentX mRouterFragmentX;
     /** 标准SDK下的Fragment */
     private RouterFragment mRouterFragment;
 
     public static ActivityLauncher init(Fragment fragment) {
         return init(fragment.getActivity());
     }
+    public static ActivityLauncher init(android.app.Fragment fragment) {
+        return init(fragment.getActivity());
+    }
+    public static ActivityLauncher init(androidx.fragment.app.Fragment fragment) {
+        return init(fragment.getActivity());
+    }
 
     public static ActivityLauncher init(FragmentActivity activity) {
+        return new ActivityLauncher(activity);
+    }
+
+    public static ActivityLauncher init(androidx.fragment.app.FragmentActivity activity) {
         return new ActivityLauncher(activity);
     }
 
@@ -38,9 +50,28 @@ public class ActivityLauncher {
         mRouterFragmentV4 = getRouterFragmentV4(activity);
     }
 
+    private ActivityLauncher(androidx.fragment.app.FragmentActivity activity) {
+        mContext = activity;
+        mRouterFragmentX = getRouterFragmentX(activity);
+    }
+
     private ActivityLauncher(Activity activity) {
         mContext = activity;
         mRouterFragment = getRouterFragment(activity);
+    }
+
+    private RouterFragmentX getRouterFragmentX(androidx.fragment.app.FragmentActivity activity) {
+        RouterFragmentX routerFragment = findRouterFragmentX(activity);
+        if (routerFragment == null) {
+            routerFragment = RouterFragmentX.newInstance();
+            androidx.fragment.app.FragmentManager fragmentManager = activity.getSupportFragmentManager();
+            fragmentManager
+                    .beginTransaction()
+                    .add(routerFragment, TAG)
+                    .commitAllowingStateLoss();
+            fragmentManager.executePendingTransactions();
+        }
+        return routerFragment;
     }
 
     private RouterFragmentV4 getRouterFragmentV4(FragmentActivity activity) {
@@ -59,6 +90,10 @@ public class ActivityLauncher {
 
     private RouterFragmentV4 findRouterFragmentV4(FragmentActivity activity) {
         return (RouterFragmentV4) activity.getSupportFragmentManager().findFragmentByTag(TAG);
+    }
+
+    private RouterFragmentX findRouterFragmentX(androidx.fragment.app.FragmentActivity activity) {
+        return (RouterFragmentX) activity.getSupportFragmentManager().findFragmentByTag(TAG);
     }
 
     private RouterFragment getRouterFragment(Activity activity) {
@@ -87,6 +122,8 @@ public class ActivityLauncher {
     public void startActivityForResult(Intent intent, Callback callback) {
         if (mRouterFragmentV4 != null) {
             mRouterFragmentV4.startActivityForResult(intent, callback);
+        } else if (mRouterFragmentX != null) {
+            mRouterFragmentX.startActivityForResult(intent, callback);
         } else if (mRouterFragment != null) {
             mRouterFragment.startActivityForResult(intent, callback);
         } else {
