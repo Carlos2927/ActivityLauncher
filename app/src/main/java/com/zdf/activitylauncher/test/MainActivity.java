@@ -7,6 +7,9 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.zdf.activitylauncher.ActivityLauncher;
+import com.zdf.activitylauncher.RouterFragment;
+import com.zdf.activitylauncher.RouterFragmentV4;
+import com.zdf.activitylauncher.RouterFragmentX;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,31 +24,34 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        findViewById(R.id.btn_launcher).setOnClickListener(view -> {
-            ActivityLauncher.init(this)
-                    .startActivityForResult(TestActivity.class, (resultCode, data) -> {
-                        Log.v("zdf", "TestActivity|onActivityResult: " + resultCode + ", " + data.toUri(0));
-
-                        tvInfo.setText("resultCode: " + resultCode);
-                        tvInfo.append("\n");
-                        tvInfo.append("data: " + data.toUri(0));
-                    });
-        });
-
-        findViewById(R.id.btn_launcher_intent).setOnClickListener(view -> {
-            Intent intent = new Intent(this, TestActivity.class);
-            intent.setAction("ACTION_TEST");
-            intent.putExtra("key1", "lala");
-            intent.putExtra("key2", 2);
-            ActivityLauncher.init(this)
-                    .startActivityForResult(intent, (resultCode, data) -> {
-                        Log.v("zdf", "TestActivity|onActivityResult: " + resultCode + ", " + data.toUri(0));
-
-                        tvInfo.setText("resultCode: " + resultCode);
-                        tvInfo.append("\n");
-                        tvInfo.append("data: " + data.toUri(0));
-                    });
-        });
+        RouterFragment a = new RouterFragment();
+        RouterFragmentV4 b = new RouterFragmentV4();
+        ActivityLauncher.init(this);
+//        findViewById(R.id.btn_launcher).setOnClickListener(view -> {
+//            ActivityLauncher.init(this)
+//                    .startActivityForResult(TestActivity.class, (resultCode, data) -> {
+//                        Log.v("zdf", "TestActivity|onActivityResult: " + resultCode + ", " + data.toUri(0));
+//
+//                        tvInfo.setText("resultCode: " + resultCode);
+//                        tvInfo.append("\n");
+//                        tvInfo.append("data: " + data.toUri(0));
+//                    });
+//        });
+//
+//        findViewById(R.id.btn_launcher_intent).setOnClickListener(view -> {
+//            Intent intent = new Intent(this, TestActivity.class);
+//            intent.setAction("ACTION_TEST");
+//            intent.putExtra("key1", "lala");
+//            intent.putExtra("key2", 2);
+//            ActivityLauncher.init(this)
+//                    .startActivityForResult(intent, (resultCode, data) -> {
+//                        Log.v("zdf", "TestActivity|onActivityResult: " + resultCode + ", " + data.toUri(0));
+//
+//                        tvInfo.setText("resultCode: " + resultCode);
+//                        tvInfo.append("\n");
+//                        tvInfo.append("data: " + data.toUri(0));
+//                    });
+//        });
 
         tvInfo = findViewById(R.id.tv_info);
     }

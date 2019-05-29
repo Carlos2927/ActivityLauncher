@@ -32,6 +32,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
 //    implementation project(':activity_launcher')
-    implementation 'com.github.Carlos2927:ActivityLauncher:v1.0.0'
+    implementation 'com.github.Carlos2927:ActivityLauncher:V1.0.6'
 //    implementation 'com.github.bbssyyuui:ActivityLauncher:1.0.2'
 }
