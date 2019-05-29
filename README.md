@@ -1,6 +1,6 @@
 # ActivityLauncher
-
-告别onActivityResult，通过Callback方式进行Activity跳转
+[![Release](https://jitpack.io/v/Carlos2927/ActivityLauncher.svg)](https://jitpack.io/#Carlos2927/ActivityLauncher)
+forked from [bbssyyuui/ActivityLauncher](https://github.com/bbssyyuui/ActivityLauncher),告别onActivityResult，通过Callback方式进行Activity跳转，同时在作者原有的基础上新增AndroidX支持，不管你项目中使用Android Support库还是AndroidX, ActivityLauncher都支持！！
 
 #### 添加依赖
 - 在Project的Gradle文件中添加JitPack仓库：
