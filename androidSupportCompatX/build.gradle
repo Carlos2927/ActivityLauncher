@@ -1,0 +1,9 @@
+apply plugin: 'java-library'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.github.Carlos2927:MockAndroidForJava:v0.0.2'
+}
+
+sourceCompatibility = "7"
+targetCompatibility = "7"
