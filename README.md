@@ -17,7 +17,7 @@ allprojects {
 ```
 - 在app项目的Gradle文件中添加ActivityLauncher库依赖：
 ```
-implementation 'com.github.bbssyyuui:ActivityLauncher:1.0.2'
+implementation 'com.github.Carlos2927:ActivityLauncher:v2.0.0'
 ```
 
 #### 如何调用
